@@ -1,0 +1,23 @@
+{
+  "name": "web-file-scraper",
+  "version": "1.0.0",
+  "description": "Web scraping script to download files from any website",
+  "main": "main.ts",
+  "scripts": {
+    "start": "npx tsx index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0",
+    "cli-progress": "^3.12.0",
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/cli-progress": "^3.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}
