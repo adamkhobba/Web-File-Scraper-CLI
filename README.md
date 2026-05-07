@@ -1,96 +1,68 @@
-# 🕷️ Web Scrapping Scripts
+# 🌐 Web File Scraper CLI
 
-Scrape & download dozens of files from any website in one command. Available in **TypeScript** and **Python**.
+An interactive command-line tool to scrape and download files from any website. Available in both **TypeScript** and **Python**.
 
 ---
 
 ## ✨ Features
 
-| Feature                  | Description                                                      |
-| ------------------------ | ---------------------------------------------------------------- |
-| **Smart file discovery** | Scans `<a>`, `<link>`, `<img>`, `<source>` tags automatically    |
-| **Extension filtering**  | Filter by individual extensions (`.pdf`, `.zip`) or preset groups |
-| **Preset groups**        | `documents`, `images`, `audio`, `video`, `archives`, `code`, `all` |
-| **Concurrent downloads** | Download multiple files in parallel (configurable)               |
-| **Retry logic**          | Automatic retries with exponential back-off                      |
-| **Progress bars**        | Visual download progress for each file                           |
-| **Custom CSS selectors** | Target specific elements on the page                             |
-| **List-only mode**       | Preview discovered links without downloading                     |
+- **Interactive CLI**: Easy-to-use prompts for URL, download directory, and file extension.
+- **Smart File Discovery**: Scans webpage links (`<a>` tags) automatically to find files matching your desired extension.
+- **Beautiful Progress Bars**: Real-time visual download progress for each file.
+- **Sequential Downloading**: Downloads files one by one to avoid overwhelming the server or your connection.
+- **Robust Error Handling**: Gracefully handles failed downloads and continues with the rest of the files.
 
 ---
 
 ## 🚀 Quick Start
 
-### TypeScript Version
-
-```bash
-cd "typescript version"
-npm install
-npx tsx main.ts -u https://example.com/resources
-```
-
 ### Python Version
+
+The Python version uses `BeautifulSoup` for parsing and `Rich` for beautiful terminal output.
 
 ```bash
 cd "Python version"
-pip install requests beautifulsoup4 tqdm colorama
-python main.py -u https://example.com/resources
+
+# 1. Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run the script
+python main.py
 ```
 
----
+### TypeScript Version
 
-## 📖 Usage Examples
+The TypeScript version uses `Cheerio` for parsing and `@inquirer/prompts` for the interactive CLI.
 
 ```bash
-# Download ALL linked files from a page
-python main.py -u https://example.com/downloads
+cd "typescript version"
 
-# Download only PDFs and ZIPs
-python main.py -u https://example.com -e .pdf,.zip
+# 1. Install dependencies
+npm install
 
-# Use a preset group (documents = pdf, doc, docx, xls, xlsx, ppt, pptx, txt, csv, odt)
-python main.py -u https://example.com -e documents
-
-# Download images only
-npx tsx main.ts -u https://example.com -e images
-
-# List files without downloading
-python main.py -u https://example.com --list-only
-
-# Custom output directory & higher concurrency
-npx tsx main.ts -u https://example.com -o ./my_files -c 5
-
-# Use a custom CSS selector to target specific links
-python main.py -u https://example.com -s "div.resources a[href]"
+# 2. Run the script
+npx tsx index.ts
 ```
 
 ---
 
-## ⚙️ CLI Options
+## 📖 Usage Guide
 
-| Flag                    | Default        | Description                                  |
-| ----------------------- | -------------- | -------------------------------------------- |
-| `-u, --url`             | **(required)** | URL of the page to scrape                    |
-| `-o, --output`          | `./downloads`  | Output directory                             |
-| `-e, --extensions`      | `all`          | Comma-separated extensions or group names    |
-| `-c, --concurrency`     | `3`            | Max concurrent downloads                     |
-| `-r, --retries`         | `3`            | Retry attempts per file                      |
-| `-t, --timeout`         | `30000` / `30` | Timeout (ms for TS, seconds for Python)      |
-| `-s, --selector`        | *(auto)*       | Custom CSS selector                          |
-| `--list-only`           | `false`        | Only list files, don't download              |
+Once you run the script, you will be prompted interactively for the following:
 
----
+1. **Target URL**: The webpage you want to scrape files from.
+   *Example: `https://www.example.com/downloads`*
+2. **Download Directory**: Where you want to save the downloaded files.
+   *Example: `./downloads` or `/mnt/d/files`*
+   *(If the directory doesn't exist, the script will offer to create it for you).*
+3. **File Extension**: The type of file you want to target.
+   *Example: `pdf`, `zip`, `mp3`. Leave blank to default to `pdf`.*
 
-## 📁 Extension Groups
-
-| Group       | Extensions                                                                  |
-| ----------- | --------------------------------------------------------------------------- |
-| `documents` | `.pdf` `.doc` `.docx` `.xls` `.xlsx` `.ppt` `.pptx` `.txt` `.csv` `.odt`  |
-| `images`    | `.jpg` `.jpeg` `.png` `.gif` `.svg` `.webp` `.bmp` `.ico` `.tiff`          |
-| `audio`     | `.mp3` `.wav` `.ogg` `.flac` `.aac` `.wma` `.m4a`                          |
-| `video`     | `.mp4` `.avi` `.mkv` `.mov` `.wmv` `.flv` `.webm`                          |
-| `archives`  | `.zip` `.rar` `.7z` `.tar` `.gz` `.bz2` `.xz`                              |
-| `code`      | `.js` `.ts` `.py` `.java` `.cpp` `.c` `.h` `.css` `.html` `.json`          |
+The script will fetch the page, find all links matching your extension, and ask for final confirmation before starting the downloads.
 
 ---
 
