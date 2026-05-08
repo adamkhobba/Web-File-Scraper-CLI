@@ -70,5 +70,7 @@ The script will fetch the page, find all links matching your extension, and ask 
 
 MIT
 
+---
+
 ### 🔗 Project Story
 Check out the project announcement and demo discussion on [LinkedIn](https://www.linkedin.com/posts/mr-adam-khobba-65b70227a_beautifulsoup-requests-rich-ugcPost-7458112020907982848-j_cx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEQXhScBviSM2m_e6f0ux9A8QvXhzeIBJ9Y).
